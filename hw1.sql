@@ -1,5 +1,5 @@
 -- Создание базы Университетов
-Create database University
+CREATE DATABASE University
 
 \c University
 
@@ -19,7 +19,7 @@ INSERT INTO courses (id, name, is_exam, min_grade, max_grade) VALUES
 (3, 'Data science', TRUE, 60, 100),
 (4, 'Machine learning', TRUE, 55, 100);
 
-Select * From courses;
+SELECT * FROM courses LIMIT 10;
 
 -- 2. Создадим таблицу groups
 CREATE TABLE groups (
@@ -77,7 +77,7 @@ INSERT INTO course_grades (student_id, course_id, grade, grade_str) VALUES
 (5, 3, 65, 'Pass'), -- Machine learning
 (6, 1, 33, 'No pass'); -- Mathematics
 
-SELECT * from course_grades;
+SELECT * FROM course_grades LIMIT 10;
 
 -- Фильтрация
 -- Найти всех студентов конкретной группы
