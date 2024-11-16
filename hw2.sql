@@ -57,7 +57,7 @@ CREATE INDEX idx_group_id ON students(group_id);
 
 -- Запрос списка всех студентов с их курсами:
 SELECT s.first_name, s.last_name, c.name AS course_name
-FROM students s JOIN student_courses sc ON s.id = sc.student_id JOIN courses c ON sc.course_id = c.id;
+FROM students s JOIN student_courses sc ON s.id = sc.student_id JOIN courses c ON sc.course_id = c.id LIMIT 5;
 
 -- Запрос нахождения студентов с самой высокой средней оценкой по курсам в их группе:
 SELECT s.first_name, s.last_name, AVG(cg.grade) AS average_grade
@@ -69,14 +69,14 @@ HAVING AVG(cg.grade) > (
     JOIN course_grades cg2 ON s2.id = cg2.student_id
     WHERE s2.group_id = s.group_id
     GROUP BY s2.id
-);
+) LIMIT 5;
 
 -- Подсчитать количество студентов на каждом курсе:
 SELECT c.name AS course_name, COUNT(sc.student_id) AS num_students
 FROM courses c JOIN student_courses sc ON c.id = sc.course_id
-GROUP BY c.name;
+GROUP BY c.name LIMIT 5;
 
 -- Найти среднюю оценку на каждом курсе:
 SELECT c.name AS course_name, AVG(cg.grade) AS average_grade
 FROM courses c JOIN course_grades cg ON c.id = cg.course_id
-GROUP BY c.name;
+GROUP BY c.name LIMIT 5;
